@@ -1,32 +1,29 @@
 const calculateBtn = document.querySelector('#calculateBtn');
 const operationType = document.querySelector('#operation');
-const num1 = document.querySelector('#num1');
-const num2 = document.querySelector('#num2');
 
 class Calculator {
-  constructor(num1, num2) {
-    this.num1 = num1;
-    this.num2 = num2;
-    // this.operationType = operationType;
+  constructor() {
+    this.num1 = document.querySelector('#num1').value;
+    this.num2 = document.querySelector('#num2').value;
   }
 
   add() {
-    this.render(Number(this.num1) + Number(this.num2));
+    this.compute(Number(this.num1) + Number(this.num2));
   }
 
   subtract() {
-    this.render(Number(this.num1) - Number(this.num2));
+    this.compute(Number(this.num1) - Number(this.num2));
   }
 
   multiply() {
-    this.render(Number(this.num1) * Number(this.num2));
+    this.compute(Number(this.num1) * Number(this.num2));
   }
 
   divide() {
-    this.render(Number(this.num1) / Number(this.num2));
+    this.compute(Number(this.num1) / Number(this.num2));
   }
 
-  render(answer) {
+  compute(answer) {
     const result = document.querySelector('#result');
     result.innerHTML = answer;
   }
@@ -34,10 +31,7 @@ class Calculator {
 
 calculateBtn.addEventListener('click', () => {
   const opType = operationType.value;
-  const number1 = num1.value;
-  const number2 = num2.value;
 
-  const simpleCalculator = new Calculator(number1, number2);
-  // simpleCalculator.render();
+  const simpleCalculator = new Calculator();
   eval(`simpleCalculator.${opType}()`)
 })
